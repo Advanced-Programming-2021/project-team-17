@@ -3,5 +3,5 @@
 
 ### Team Members:
 - Parmida Javadian 99101365
-- Student2 99100000
+- Kiana Mousazadeh 99102348
 - Student3 99100000
