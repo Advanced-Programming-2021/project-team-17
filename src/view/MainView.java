@@ -32,17 +32,27 @@ public class MainView {
 
     private boolean processCommand(String command) {
         MainController mainController = MainController.getInstance(this.user);
-        if (command.startsWith("duel new ") && command.matches("[\\w -]+")) {
-            Matcher matcher1 = getCommandMatcher(command, "--(second-player|s-p) ([\\w ]+)");
-            Matcher matcher2 = getCommandMatcher(command, "--(rounds|r) ([0-9]+)");
-            if (matcher1.find() && matcher2.find()) {
+        if (command.startsWith("duel ") && command.matches("[\\w -]+")) {
+            Matcher matcher1 = getCommandMatcher(command, "(--new|-n)");
+            Matcher matcher2 = getCommandMatcher(command, "(--second-player|-sp) ([\\w ]+)");
+            Matcher matcher3 = getCommandMatcher(command, "(--rounds|-r) ([0-9]+)");
+            Matcher matcher4 = getCommandMatcher(command, "(--ai|-ai)");
+            if (matcher1.find() && matcher2.find() && matcher3.find()) {
                 try {
-                    mainController.newDuel(matcher1.group(2), Integer.parseInt(matcher2.group(2)));
+                    mainController.newDuel(matcher2.group(2), Integer.parseInt(matcher3.group(2)));
                 }
                 catch (Exception exception){
                     printText(exception.getMessage());
                 }
                 return false;
+            }
+            if(matcher4.find() && matcher1.find() && matcher3.find()){
+                try{
+                    //TODO NEW GAME WITH AI
+                }
+                catch (Exception exception){
+                    printText(exception.getMessage());
+                }
             }
         }
         Matcher matcher = getCommandMatcher(command, "menu enter ([\\w ]+)");

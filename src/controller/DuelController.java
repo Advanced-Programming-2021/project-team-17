@@ -4,6 +4,8 @@ import controller.exeption.*;
 import model.*;
 import view.DuelView;
 
+import java.util.regex.Matcher;
+
 public class DuelController {
 
     private User player;
@@ -21,7 +23,25 @@ public class DuelController {
         this.selectedCard = null;
     }
 
-    public void selectCard(String address) {
+    public void selectCardPlayerMonsterZone(int address) {
+
+    }
+    public void selectCardOpponentMonsterZone(int address) {
+
+    }
+    public void selectCardPlayerTrapAndSpellZone(int address) {
+
+    }
+    public void selectCardOpponentTrapAndSpellZone(int address) {
+
+    }
+    public void selectCardPlayerFieldZone() {
+
+    }
+    public void selectCardOpponentFieldZone() {
+
+    }
+    public void selectCardPlayerHand(int address) {
 
     }
 

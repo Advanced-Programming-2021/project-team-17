@@ -36,9 +36,9 @@ public class LogInView {
             return false;
         }
         if (command.startsWith("user create ") && command.matches("[\\w -]+")) {
-            Matcher matcher1 = getCommandMatcher(command, "--(username|u) ([\\w ]+)");
-            Matcher matcher2 = getCommandMatcher(command, "--(nickname|n) ([\\w ]+)");
-            Matcher matcher3 = getCommandMatcher(command, "--(password|p) ([\\w ]+)");
+            Matcher matcher1 = getCommandMatcher(command, "(--username|-u) ([\\w ]+)");
+            Matcher matcher2 = getCommandMatcher(command, "(--nickname|-n) ([\\w ]+)");
+            Matcher matcher3 = getCommandMatcher(command, "(--password|-p) ([\\w ]+)");
             if (matcher1.find() && matcher2.find() && matcher3.find()) {
                 try {
                     logInController.createUser(matcher1.group(2), matcher3.group(2), matcher2.group(2));
@@ -49,8 +49,8 @@ public class LogInView {
             return false;
         }
         if (command.startsWith("user login ") && command.matches("[\\w -]+")) {
-            Matcher matcher1 = getCommandMatcher(command, "--username ([\\w]+)");
-            Matcher matcher2 = getCommandMatcher(command, "--password ([\\w]+)");
+            Matcher matcher1 = getCommandMatcher(command, "(--username|-u) ([\\w]+)");
+            Matcher matcher2 = getCommandMatcher(command, "(--password|-p) ([\\w]+)");
             if (matcher1.find() && matcher2.find()) {
                 try {
                     logInController.loginUser(matcher1.group(2), matcher2.group(2));

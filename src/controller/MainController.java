@@ -1,7 +1,7 @@
 package controller;
 
 import controller.exeption.*;
-import model.*;
+import model.User;
 import view.*;
 
 public class MainController {

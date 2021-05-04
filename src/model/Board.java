@@ -113,8 +113,16 @@ public class Board {
             }
 
         }
-
         return toReturn;
+    }
+
+    public String toStringForRival(){
+        String toReturn = "";
+        for(int i=0;i<cardsInHand.size()-1;i++){
+            toReturn += "c\t";
+        }
+        toReturn+="c\n";
+        toReturn+=this.
     }
 
     public boolean isFullMonsterZone(){

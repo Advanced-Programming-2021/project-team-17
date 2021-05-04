@@ -70,10 +70,10 @@ public class DeckView {
             return false;
         }*/
         if (command.startsWith("deck add-card ") && command.matches("[\\w -]+")) {
-            Matcher matcher1 = getCommandMatcher(command, "--(card|c) ([\\w ]+)");
-            Matcher matcher2 = getCommandMatcher(command, "--(deck|d) ([\\w ]+)");
+            Matcher matcher1 = getCommandMatcher(command, "(--card|-c) ([\\w ]+)");
+            Matcher matcher2 = getCommandMatcher(command, "(--deck|-d) ([\\w ]+)");
             if (matcher1.find() && matcher2.find()) {
-                Matcher matcher3 = getCommandMatcher(command, " --(side|s)");
+                Matcher matcher3 = getCommandMatcher(command, " (--side|-s)");
                 try {
                     deckController.addCardToDeck(matcher1.group(2), matcher2.group(2), matcher3.find());
                 } catch (Exception exception) {
@@ -82,10 +82,10 @@ public class DeckView {
             }
         }
         if (command.startsWith("deck rm-card ") && command.matches("[\\w -]+")) {
-            Matcher matcher1 = getCommandMatcher(command, "--(card|c) ([\\w ]+)");
-            Matcher matcher2 = getCommandMatcher(command, "--(deck|d) ([\\w ]+)");
+            Matcher matcher1 = getCommandMatcher(command, "(--card|-c) ([\\w ]+)");
+            Matcher matcher2 = getCommandMatcher(command, "(--deck|-d) ([\\w ]+)");
             if (matcher1.find() && matcher2.find()) {
-                Matcher matcher3 = getCommandMatcher(command, " --(side|s)");
+                Matcher matcher3 = getCommandMatcher(command, " (--side|-s)");
                 try {
                     deckController.removeCardFromDeck(matcher1.group(2), matcher2.group(2), matcher3.find());
                 } catch (Exception exception) {
@@ -115,13 +115,13 @@ public class DeckView {
             return false;
         }*/
         if (command.startsWith("deck show ") && command.matches("[\\w -]+")) {
-            Matcher matcher1 = getCommandMatcher(command, "--(deck-name|d-n) ([\\w ]+)");
+            Matcher matcher1 = getCommandMatcher(command, "(--deck-name|-dn) ([\\w ]+)");
             if (matcher1.find()) {
-                Matcher matcher2 = getCommandMatcher(command, " --(side|s)");
+                Matcher matcher2 = getCommandMatcher(command, " (--side|-s)");
                 deckController.showDeck(matcher1.group(2), matcher2.find());
             }
         }
-        matcher = getCommandMatcher(command, "deck show --cards");
+        matcher = getCommandMatcher(command, "deck show (--cards|-c)");
         if (matcher.matches()) {
             deckController.showAllCards();
             return false;

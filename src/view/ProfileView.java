@@ -30,7 +30,7 @@ public class ProfileView {
 
     private boolean processCommand(String command) {
         ProfileController profileController = ProfileController.getInstance(this.user);
-        Matcher matcher = getCommandMatcher(command, "profile change --(nickname|n) ([\\w]+)");
+        Matcher matcher = getCommandMatcher(command, "profile change (--nickname|-n) ([\\w]+)");
         if (matcher.matches()) {
             try {
                 profileController.changeNickname(matcher.group(2));
@@ -40,9 +40,9 @@ public class ProfileView {
             return false;
         }
         if (command.startsWith("profile change ") && command.matches("[\\w ]+")) {
-            Matcher matcher1 = getCommandMatcher(command, "--(password|p)");
-            Matcher matcher2 = getCommandMatcher(command, "--(current|c) ([\\w ]+)");
-            Matcher matcher3 = getCommandMatcher(command, "--(new|n) ([\\w ]+)");
+            Matcher matcher1 = getCommandMatcher(command, "(--password|-p)");
+            Matcher matcher2 = getCommandMatcher(command, "(--current|-c) ([\\w ]+)");
+            Matcher matcher3 = getCommandMatcher(command, "(--new|-n) ([\\w ]+)");
             if (matcher1.find() && matcher2.find()) {
                 try {
                     profileController.changePassword(matcher2.group(2), matcher3.group(2));

@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DuelView {
-//    private User user;
+    private User user;
     private DuelController duelController;
 
     public DuelView(User user, User rival, int roundNumber) {
@@ -23,31 +23,42 @@ public class DuelView {
     }
 
     private boolean processCommand(String command) {
-        if(command.matches("select -d")){
-            try {
-                //TODO
+            /*Matcher matcher1 = getCommandMatcher(command, "([1-5])");
+            Matcher matcher2 = getCommandMatcher(command, "--opponent");
+            Matcher matcher3 = getCommandMatcher(command, "--monster ");
+            Matcher matcher4 = getCommandMatcher(command, "--spell ");
+
+            //harif
+            if (matcher3.find() && matcher1.find()) {
+                //monster
             }
-            catch (Exception exception){
+            if (matcher4.find() && matcher1.find()) {
+                //spell
+            }*/
+        if (command.equals("select -d")) {
+            try {
+                duelController.unselectCard();
+            } catch (Exception exception) {
                 printText(exception.getMessage());
             }
         }
-            Matcher matcher = getCommandMatcher(command, "select ([\\w -]+)");
+        Matcher matcher = getCommandMatcher(command, "select ([\\w -]+)");
         if (matcher.matches()) {
             try {
-                //TODO tabeo seda bezan
-            }
-            catch (Exception exception){
+                duelController.selectCard(matcher.group(1));
+            } catch (Exception exception) {
                 printText(exception.getMessage());
             }
             return false;
         }
-        if(command.matches("next phase")){
-            //TODO
+        if (command.equals("next phase")) {
+           duelController.goNextPhase();
         }
-        if(command.startsWith("menu enter ")){
+        if (command.startsWith("menu enter ")) {
             printText("menu navigation is not possible");
             return false;
         }
+        printText("invalid command");
         return false;
     }
 
